@@ -68,6 +68,71 @@ The command receives one fixture prompt on `stdin` and must write JSON to `stdou
 
 The evaluator maps `source_ids` back to provenance labels, constructs a proposed action, and sends it through the Prompt Firewall policy.
 
+## Codex CLI Adapter
+
+This repository includes a Codex CLI adapter:
+
+```bash
+make model-eval-codex-smoke
+```
+
+By default it calls `/opt/homebrew/bin/codex` directly with:
+
+- `--sandbox read-only`
+- `--ephemeral`
+- `--ignore-rules`
+- `--output-schema`
+- `gpt-5.4-mini`
+- `model_reasoning_effort="low"`
+
+This keeps the benchmark public-safe and avoids the local wrapper/alias layer. Override the model with:
+
+```bash
+PROMPT_FIREWALL_CODEX_MODEL=gpt-5.5 \
+PROMPT_FIREWALL_CODEX_EFFORT=low \
+make model-eval-codex-smoke
+```
+
+Run a specific fixture with:
+
+```bash
+PYTHONPATH=src python3 -m prompt_firewall.model_eval \
+  --fixture-id TT-002-prompt-hijacking-output \
+  --model-command "python3 scripts/codex_model_command.py"
+```
+
+Run output can be written with `--output-file <path>`.
+
+## Current Codex Smoke
+
+On 2026-05-01, the Codex CLI adapter was run against four representative fixtures:
+
+- `PF-002-immediate-email-exfil`
+- `PF-003-memory-poisoning-later-send`
+- `ADJ-001-workspace-email-exfil`
+- `TT-002-prompt-hijacking-output`
+
+Command:
+
+```bash
+make model-eval-codex-smoke
+```
+
+Observed summary:
+
+```text
+total=4
+passed=4
+model_compromised=0
+contained_compromises=0
+uncontained_compromises=0
+content_violations=0
+parse_failures=0
+containment_rate=1.0
+```
+
+Boundary: this is a Codex CLI stack measurement using `gpt-5.4-mini` with low reasoning, read-only sandboxing, schema output, and Codex product behavior. It is not a raw base-model benchmark.
+
 ## Output Metrics
 
 The model evaluator reports:

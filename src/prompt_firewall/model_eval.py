@@ -312,6 +312,26 @@ def evaluate_model(
     return [evaluate_model_fixture(model, fixture, policy) for fixture in selected_fixtures]
 
 
+def select_fixtures(
+    all_fixtures: list[Fixture],
+    fixture_ids: list[str] | None = None,
+    fixture_prefix: str | None = None,
+    limit: int | None = None,
+) -> list[Fixture]:
+    selected = all_fixtures
+    if fixture_ids:
+        requested = set(fixture_ids)
+        selected = [fixture for fixture in selected if fixture.id in requested]
+        missing = sorted(requested - {fixture.id for fixture in selected})
+        if missing:
+            raise ValueError(f"unknown fixture id(s): {', '.join(missing)}")
+    if fixture_prefix:
+        selected = [fixture for fixture in selected if fixture.id.startswith(fixture_prefix)]
+    if limit is not None:
+        selected = selected[:limit]
+    return selected
+
+
 def summarize_model_results(results: list[ModelEvaluationResult]) -> dict[str, int | float]:
     total = len(results)
     compromised = sum(1 for result in results if result.model_compromised)
@@ -345,15 +365,23 @@ def main() -> int:
     parser.add_argument("--fake-model", choices=["cautious", "vulnerable"], default="vulnerable")
     parser.add_argument("--model-command", help="Command that reads a fixture prompt on stdin and writes JSON.")
     parser.add_argument("--timeout-seconds", type=int, default=60)
+    parser.add_argument("--fixture-id", action="append", help="Run only this fixture id. Repeatable.")
+    parser.add_argument("--fixture-prefix", help="Run fixtures whose ids start with this prefix.")
+    parser.add_argument("--limit", type=int, help="Run only the first N selected fixtures.")
+    parser.add_argument("--output-file", help="Write full JSON payload to this path.")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
 
     model = _select_model(args)
-    results = evaluate_model(model)
+    selected_fixtures = select_fixtures(default_fixtures(), args.fixture_id, args.fixture_prefix, args.limit)
+    results = evaluate_model(model, fixtures=selected_fixtures)
     payload = {
         "summary": summarize_model_results(results),
         "results": [asdict(result) for result in results],
     }
+    if args.output_file:
+        with open(args.output_file, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, default=str)
     if args.json:
         print(json.dumps(payload, indent=2, default=str))
     else:

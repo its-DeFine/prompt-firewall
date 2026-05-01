@@ -71,6 +71,12 @@ Run the same evaluator with a cautious fake model:
 make model-eval-cautious
 ```
 
+Run a bounded real Codex CLI smoke:
+
+```bash
+make model-eval-codex-smoke
+```
+
 The current adapter set includes:
 
 - `no_guard`

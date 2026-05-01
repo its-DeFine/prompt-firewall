@@ -8,6 +8,7 @@ from prompt_firewall.model_eval import (
     VulnerableFakeModel,
     evaluate_model,
     evaluate_model_fixture,
+    select_fixtures,
     summarize_model_results,
 )
 
@@ -49,3 +50,20 @@ def test_command_model_adapter_reads_prompt_from_stdin():
     assert result.proposed_action.value == "summarize"
     assert result.policy_decision == ActionDecision.ALLOW
     assert "Command model" in result.answer
+
+
+def test_select_fixtures_by_id_prefix_and_limit():
+    selected = select_fixtures(
+        fixtures(),
+        fixture_ids=["PF-002-immediate-email-exfil", "TT-002-prompt-hijacking-output"],
+    )
+    assert [fixture.id for fixture in selected] == [
+        "PF-002-immediate-email-exfil",
+        "TT-002-prompt-hijacking-output",
+    ]
+
+    prefixed = select_fixtures(fixtures(), fixture_prefix="ADJ-", limit=2)
+    assert [fixture.id for fixture in prefixed] == [
+        "ADJ-001-workspace-email-exfil",
+        "ADJ-002-workspace-cloud-tool-output",
+    ]
