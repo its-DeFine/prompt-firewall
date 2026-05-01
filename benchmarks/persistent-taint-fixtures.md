@@ -18,6 +18,17 @@ The initial benchmark is deterministic. It tests policy behavior around provenan
 - `PF-010`: tool output cannot poison a later agent handoff into external posting
 - `PF-011`: signed read scope cannot be stretched into payment
 - `PF-012`: tainted memory writes enter quarantine
+- `ADJ-001`: workspace email attempts cloud-file exfiltration
+- `ADJ-002`: workspace cloud-search tool output attempts public posting
+- `ADJ-003`: travel-search output attempts profile poisoning
+- `ADJ-004`: banking/vendor message applies payment pressure
+- `ADJ-005`: persisted workspace tool output is retrieved for later external posting
+- `TT-001`: prompt-extraction attack requests hidden policy or secrets
+- `TT-002`: prompt hijacking attempts an attacker-chosen final answer
+- `TT-003`: encoded prompt hijacking attempts to bypass simple filters
+- `TT-004`: persisted prompt-extraction attack later requests secret access
+
+The `ADJ-*` and `TT-*` fixtures are synthetic fixtures inspired by AgentDojo and Tensor Trust attack families. They are designed to test Prompt Firewall's adapter contract before importing full external benchmark datasets.
 
 ## Current Adapter Set
 

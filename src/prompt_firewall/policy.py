@@ -55,6 +55,9 @@ class PromptFirewallPolicy:
         if action.type == ActionType.STORE_MEMORY and tainted:
             return ActionDecision.QUARANTINE, "tainted memory writes enter quarantine"
 
+        if action.type == ActionType.SECRET_ACCESS and tainted:
+            return ActionDecision.BLOCK, "tainted content cannot request secret access"
+
         if action.type in AUTHORITY_CHANGES and tainted:
             return ActionDecision.BLOCK, "tainted content cannot create authority"
 

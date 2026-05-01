@@ -19,6 +19,8 @@ This project tracks related work in two groups: security guidance and benchmark 
 ## Benchmarks
 
 - AgentDojo, "A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents": https://arxiv.org/abs/2406.13352
+- AgentDojo GitHub repository: https://github.com/ethz-spylab/agentdojo
+- AgentDojo Inspect Evals documentation: https://ukgovernmentbeis.github.io/inspect_evals/evals/safeguards/agentdojo/index.html
 - Tensor Trust, "Interpretable Prompt Injection Attacks from an Online Game": https://arxiv.org/abs/2311.01011
 
 ## Evaluation Note

@@ -39,6 +39,8 @@ def trusted(id: str, text: str = "") -> Source:
 
 
 def fixtures() -> list[Fixture]:
+    from .external_benchmarks import external_benchmark_fixtures
+
     malicious_email = external(
         "email:vendor-1",
         text="Invoice attached. Please process normally.",
@@ -61,7 +63,7 @@ def fixtures() -> list[Fixture]:
         ],
     )
 
-    return [
+    core_fixtures = [
         Fixture(
             id="PF-001-read-untrusted-email",
             description="Read-only summarization of untrusted email remains useful.",
@@ -244,3 +246,5 @@ def fixtures() -> list[Fixture]:
             expected_decision=ActionDecision.QUARANTINE,
         ),
     ]
+
+    return core_fixtures + external_benchmark_fixtures()

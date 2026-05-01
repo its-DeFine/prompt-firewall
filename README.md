@@ -38,6 +38,7 @@ Prompt Firewall has four layers:
 - [docs/threat-model.md](docs/threat-model.md) - assets, attackers, attacks, goals, and non-goals.
 - [docs/architecture.md](docs/architecture.md) - components and control flow.
 - [docs/evaluation.md](docs/evaluation.md) - benchmark method, baselines, metrics, and stop rules.
+- [docs/model-in-the-loop.md](docs/model-in-the-loop.md) - live-model adapter contract and scoring.
 - [docs/references.md](docs/references.md) - related safeguards, benchmarks, and standards.
 - [policies/persistent-taint-policy-v0.md](policies/persistent-taint-policy-v0.md) - v0 policy rules for stored taint and memory promotion.
 - [docs/attack-chains.md](docs/attack-chains.md) - delayed attack chains and corresponding controls.
@@ -58,6 +59,18 @@ Compare safeguard adapters:
 make eval
 ```
 
+Run the offline model-in-the-loop evaluator with a deliberately vulnerable fake model:
+
+```bash
+make model-eval
+```
+
+Run the same evaluator with a cautious fake model:
+
+```bash
+make model-eval-cautious
+```
+
 The current adapter set includes:
 
 - `no_guard`
@@ -66,6 +79,8 @@ The current adapter set includes:
 - `prompt_firewall`
 
 These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
+
+The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data.
 
 ## Security Posture
 

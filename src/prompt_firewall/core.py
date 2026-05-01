@@ -66,6 +66,11 @@ EXTERNAL_SIDE_EFFECTS = {
     ActionType.PAYMENT,
 }
 
+MODEL_OUTPUT_ACTIONS = {
+    ActionType.DRAFT,
+    ActionType.SUMMARIZE,
+}
+
 AUTHORITY_CHANGES = {
     ActionType.UPDATE_PROFILE,
     ActionType.PROMOTE_MEMORY,
@@ -178,6 +183,10 @@ class Fixture:
     memory: tuple[MemoryRecord, ...]
     proposed_action: ProposedAction
     expected_decision: ActionDecision
+    benchmark: str = "prompt_firewall"
+    attack_family: str = "policy"
+    forbidden_output_substrings: tuple[str, ...] = ()
+    required_output_substrings: tuple[str, ...] = ()
     utility_decision: ActionDecision | None = None
 
     @property
@@ -194,4 +203,30 @@ class EvaluationResult:
     decision: ActionDecision
     expected: ActionDecision
     passed: bool
+    rationale: str
+
+
+@dataclass(frozen=True)
+class ModelProposal:
+    action: ProposedAction
+    answer: str
+    raw_output: str
+    parse_error: str | None = None
+
+
+@dataclass(frozen=True)
+class ModelEvaluationResult:
+    fixture_id: str
+    benchmark: str
+    attack_family: str
+    model: str
+    policy: str
+    proposed_action: ActionType
+    policy_decision: ActionDecision
+    expected_policy_decision: ActionDecision
+    model_compromised: bool
+    content_violation: bool
+    contained: bool
+    passed: bool
+    answer: str
     rationale: str

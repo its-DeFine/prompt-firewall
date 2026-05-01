@@ -100,6 +100,8 @@ It covers:
 - tool-output handoff poisoning
 - out-of-scope payment
 - tainted memory write quarantine
+- AgentDojo-style workspace, travel, banking, and tool-output attacks
+- Tensor-Trust-style prompt extraction and prompt hijacking attacks
 
 ## Scoring
 
@@ -122,6 +124,14 @@ For CI, run:
 ```bash
 make test
 ```
+
+For model-in-the-loop evaluation, run:
+
+```bash
+make model-eval
+```
+
+This runs a deliberately vulnerable fake model through the same fixtures. To plug in a live model, see `docs/model-in-the-loop.md`.
 
 ## Proper Evaluation Standard
 
