@@ -82,6 +82,8 @@ These adapters intentionally separate model-layer defenses from execution-layer 
 
 The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data.
 
+GitHub Actions is not enabled yet because this repository owner's Actions jobs are currently blocked by account billing state. Use the local `make` gates above as the source of truth until CI is available.
+
 ## Security Posture
 
 Prompt Firewall assumes:
