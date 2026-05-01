@@ -37,9 +37,35 @@ Prompt Firewall has four layers:
 
 - [docs/threat-model.md](docs/threat-model.md) - assets, attackers, attacks, goals, and non-goals.
 - [docs/architecture.md](docs/architecture.md) - components and control flow.
+- [docs/evaluation.md](docs/evaluation.md) - benchmark method, baselines, metrics, and stop rules.
+- [docs/references.md](docs/references.md) - related safeguards, benchmarks, and standards.
 - [policies/persistent-taint-policy-v0.md](policies/persistent-taint-policy-v0.md) - v0 policy rules for stored taint and memory promotion.
 - [docs/attack-chains.md](docs/attack-chains.md) - delayed attack chains and corresponding controls.
 - [examples/email-memory-poisoning.md](examples/email-memory-poisoning.md) - concrete email-to-memory poisoning scenario.
+- [benchmarks/persistent-taint-fixtures.md](benchmarks/persistent-taint-fixtures.md) - fixture families and adapter metrics.
+
+## Engineering Quickstart
+
+Run the deterministic fixture suite:
+
+```bash
+make test
+```
+
+Compare safeguard adapters:
+
+```bash
+make eval
+```
+
+The current adapter set includes:
+
+- `no_guard`
+- `prompt_only_pattern_filter`
+- `structured_separation_current_context`
+- `prompt_firewall`
+
+These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
 
 ## Security Posture
 
@@ -61,3 +87,4 @@ This is an initial public spec. The next useful step is a small reference implem
 - action mediation policy engine
 - red-team fixtures for stored injection
 
+The first engineering pass now includes a Python reference harness under `src/prompt_firewall` and pytest coverage under `tests`.
