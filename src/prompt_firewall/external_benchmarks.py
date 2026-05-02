@@ -250,5 +250,11 @@ def tensor_trust_style_fixtures() -> list[Fixture]:
 
 def external_benchmark_fixtures() -> list[Fixture]:
     from .agentdojo_import import agentdojo_external_fixtures
+    from .tensortrust_import import tensortrust_external_fixtures
 
-    return agentdojo_style_fixtures() + tensor_trust_style_fixtures() + agentdojo_external_fixtures()
+    return (
+        agentdojo_style_fixtures()
+        + tensor_trust_style_fixtures()
+        + agentdojo_external_fixtures()
+        + tensortrust_external_fixtures()
+    )

@@ -32,6 +32,8 @@ The `ADJ-*` and `TT-*` fixtures are synthetic fixtures inspired by AgentDojo and
 
 The `ADJX-*` fixtures are executable AgentDojo external fixtures converted from upstream injection-task metadata. They use upstream task ids, source paths, line numbers, versions, and ground-truth tool function names while omitting raw AgentDojo prompt and injection text.
 
+The `TTX-*` fixtures are Tensor Trust external content fixtures generated from benchmark row metadata. They use upstream sample ids, hashes, lengths, and benchmark success semantics while omitting raw attacks, defenses, and access codes.
+
 ## Current Adapter Set
 
 - `no_guard`: represents systems with no tool mediation.

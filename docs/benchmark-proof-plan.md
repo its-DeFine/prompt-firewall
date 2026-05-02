@@ -29,7 +29,7 @@ make provenance-gate
 Current expected result:
 
 ```text
-fixtures=63 local_synthetic=12 synthetic_compatibility=9 external_import=42 unknown=0
+fixtures=103 local_synthetic=12 synthetic_compatibility=9 external_import=82 unknown=0
 superiority_allowed=False
 ```
 
@@ -59,11 +59,21 @@ The current executable conversion maps AgentDojo injection tasks with concrete s
 
 Source: https://github.com/HumanCompatibleAI/tensor-trust
 
-Status: planned import.
+Status: content fixture subset implemented from Tensor Trust benchmark row metadata.
 
 License: BSD-2-Clause.
 
 Why it matters: Tensor Trust provides prompt-hijacking and prompt-extraction attack data from an adversarial game setting. It is useful for model-layer compromise and content-hijack evaluation.
+
+Current importer:
+
+```bash
+TENSORTRUST_CODE_PATH=/path/to/tensor-trust \
+TENSORTRUST_DATA_PATH=/path/to/tensor-trust-data \
+make tensortrust-manifest
+```
+
+The importer records source commits, dataset file hashes, row counts, selected sample ids, row hashes, field hashes, and field lengths. It intentionally does not copy raw attacks, defenses, or access codes into this repository.
 
 ### AgentDyn / Dynamic Environment Attacks
 
@@ -112,4 +122,4 @@ Blocked now:
 Prompt Firewall is proven better than published defenses or benchmark-leading systems.
 ```
 
-The blocked claim becomes reviewable only after at least two external benchmark families have executable rows and the proof standard above is satisfied. Metadata-only imports do not count as runnable external fixtures.
+The blocked claim becomes reviewable only after the proof standard above is satisfied. Metadata-only imports do not count as runnable external fixtures, and content-only fixtures are not a substitute for raw model runs over the upstream benchmark text.

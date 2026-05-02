@@ -25,6 +25,7 @@ class BenchmarkFamily:
         return self.source_kind == "external_import" and self.status in {
             "implemented",
             "executable_fixture_subset_implemented",
+            "content_fixture_subset_implemented",
         }
 
 

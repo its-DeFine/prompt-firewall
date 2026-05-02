@@ -7,6 +7,7 @@ The metadata files here identify upstream commits, task ids, suite names, source
 Current status:
 
 - `agentdojo-source-metadata.json`: AgentDojo source metadata generated from a local checkout.
+- `tensortrust-source-metadata.json`: Tensor Trust benchmark metadata generated from a local `tensor-trust-data` checkout.
 
 Rows with concrete AgentDojo injection-task side-effect functions are converted into executable `ADJX-*` Prompt Firewall fixtures. Output-only tasks and tasks whose security condition infers side effects without explicit ground-truth function calls remain metadata-only.
 

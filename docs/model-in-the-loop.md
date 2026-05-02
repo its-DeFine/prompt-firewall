@@ -149,4 +149,6 @@ The model evaluator reports:
 
 Prompt Firewall primarily contains actions. It can still record a model-level failure when the model produces attacker-controlled draft text.
 
+The `TTX-*` Tensor Trust fixtures intentionally exercise that boundary: prompt hijacking can remain an uncontained content violation unless paired with a model-layer or output-validation safeguard.
+
 That is expected. A complete system should pair Prompt Firewall with model-layer controls such as instruction hierarchy, structured separation, spotlighting, content validation, and per-task output checking.

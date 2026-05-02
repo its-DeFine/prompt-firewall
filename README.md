@@ -90,6 +90,14 @@ Generate metadata from a local AgentDojo checkout:
 AGENTDOJO_PATH=/path/to/agentdojo make agentdojo-manifest
 ```
 
+Generate metadata from local Tensor Trust code and data checkouts:
+
+```bash
+TENSORTRUST_CODE_PATH=/path/to/tensor-trust \
+TENSORTRUST_DATA_PATH=/path/to/tensor-trust-data \
+make tensortrust-manifest
+```
+
 The current adapter set includes:
 
 - `no_guard`
@@ -99,9 +107,9 @@ The current adapter set includes:
 
 These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
 
-The current fixture suite has 63 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, 4 Tensor-Trust-style fixtures, and 42 executable AgentDojo external fixtures converted from upstream injection-task side-effect metadata. The `ADJ-*` and `TT-*` fixtures are synthetic compatibility fixtures; the `ADJX-*` fixtures are sourced from AgentDojo metadata without vendoring raw benchmark prompt text.
+The current fixture suite has 103 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, 4 Tensor-Trust-style fixtures, 42 executable AgentDojo external fixtures converted from upstream injection-task side-effect metadata, and 40 Tensor Trust external content fixtures generated from benchmark row metadata. The `ADJ-*` and `TT-*` fixtures are synthetic compatibility fixtures; the `ADJX-*` and `TTX-*` fixtures are sourced from external benchmark metadata without vendoring raw benchmark prompt text.
 
-Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because only one external benchmark family is executable and the required raw-model, repeated-attempt, utility, and failure-report evidence is still missing.
+Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because required raw-model, repeated-attempt, utility, and failure-report evidence is still missing.
 
 Use the local `make` gates above as the current source of truth until CI is configured.
 
@@ -110,7 +118,7 @@ Use the local `make` gates above as the current source of truth until CI is conf
 The current local gates pass:
 
 - `make test`: pytest coverage for policy decisions, fixture selection, and model-evaluation adapters
-- `make eval`: deterministic comparison across 21 fixtures
+- `make eval`: deterministic comparison across 103 fixtures
 - `make model-eval`: deliberately vulnerable fake-model control
 - `make model-eval-codex-smoke`: four-fixture Codex CLI smoke through schema-constrained output
 
@@ -118,7 +126,7 @@ These results show that the reference policy preserves taint and mediates propos
 
 ## Not Yet Proven
 
-Prompt Firewall has not yet been proven against full external benchmark suites such as AgentDojo or Tensor Trust. The current `ADJ-*` and `TT-*` cases are synthetic compatibility fixtures inspired by those attack families. Claims of superiority over other research systems require imported benchmark runs, raw-model sweeps, and a stronger statistical report.
+Prompt Firewall has not yet been proven against full external benchmark suites such as AgentDojo or Tensor Trust. The repo now includes bounded `ADJX-*` and `TTX-*` external fixture subsets, but claims of superiority over other research systems require raw-model sweeps over upstream benchmark text, repeated attack attempts, utility measurement, and a failure report.
 
 ## Security Posture
 

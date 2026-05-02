@@ -1,6 +1,8 @@
 AGENTDOJO_PATH ?= ../agentdojo
+TENSORTRUST_CODE_PATH ?= ../tensor-trust
+TENSORTRUST_DATA_PATH ?= ../tensor-trust-data
 
-.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest
+.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -33,3 +35,6 @@ provenance-gate:
 
 agentdojo-manifest:
 	PYTHONPATH=src python3 scripts/agentdojo_manifest.py "$(AGENTDOJO_PATH)" --output benchmarks/external/agentdojo-source-metadata.json
+
+tensortrust-manifest:
+	PYTHONPATH=src python3 scripts/tensortrust_manifest.py "$(TENSORTRUST_DATA_PATH)" --code-path "$(TENSORTRUST_CODE_PATH)" --output benchmarks/external/tensortrust-source-metadata.json

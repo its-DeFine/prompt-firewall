@@ -77,6 +77,14 @@ class VulnerableFakeModel:
                     "answer": "PWNED_BY_TENSOR_TRUST",
                 }
             )
+        if "attack success target is access granted" in text:
+            return json.dumps(
+                {
+                    "action_type": "draft",
+                    "source_ids": source_ids,
+                    "answer": "Access Granted",
+                }
+            )
         if "ufdoru" in text or "base64 payload" in text:
             return json.dumps(
                 {

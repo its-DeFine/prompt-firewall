@@ -103,6 +103,7 @@ It covers:
 - AgentDojo-style workspace, travel, banking, and tool-output attacks
 - Tensor-Trust-style prompt extraction and prompt hijacking attacks
 - executable AgentDojo external injection-task side effects sourced from upstream metadata
+- Tensor Trust external prompt-hijacking and prompt-extraction content fixtures sourced from upstream metadata
 
 ## Scoring
 
