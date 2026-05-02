@@ -8,4 +8,6 @@ Current status:
 
 - `agentdojo-source-metadata.json`: AgentDojo source metadata generated from a local checkout.
 
-These metadata rows are not executable Prompt Firewall fixtures yet. The superiority claim gate remains closed until external benchmark rows are converted into runnable fixtures, model runs are recorded, repeated attack attempts are measured, benign utility is reported, and failure cases are published.
+Rows with concrete AgentDojo injection-task side-effect functions are converted into executable `ADJX-*` Prompt Firewall fixtures. Output-only tasks and tasks whose security condition infers side effects without explicit ground-truth function calls remain metadata-only.
+
+The superiority claim gate remains closed until at least two external benchmark families are executable, model runs are recorded, repeated attack attempts are measured, benign utility is reported, and failure cases are published.

@@ -99,9 +99,9 @@ The current adapter set includes:
 
 These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
 
-The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data. AgentDojo source metadata can now be generated from a real checkout, but those rows are not executable fixtures yet.
+The current fixture suite has 63 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, 4 Tensor-Trust-style fixtures, and 42 executable AgentDojo external fixtures converted from upstream injection-task side-effect metadata. The `ADJ-*` and `TT-*` fixtures are synthetic compatibility fixtures; the `ADJX-*` fixtures are sourced from AgentDojo metadata without vendoring raw benchmark prompt text.
 
-Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because no executable external benchmark rows are imported yet.
+Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because only one external benchmark family is executable and the required raw-model, repeated-attempt, utility, and failure-report evidence is still missing.
 
 Use the local `make` gates above as the current source of truth until CI is configured.
 

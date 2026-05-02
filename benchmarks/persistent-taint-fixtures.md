@@ -30,6 +30,8 @@ The initial benchmark is deterministic. It tests policy behavior around provenan
 
 The `ADJ-*` and `TT-*` fixtures are synthetic fixtures inspired by AgentDojo and Tensor Trust attack families. They are designed to test Prompt Firewall's adapter contract before importing full external benchmark datasets.
 
+The `ADJX-*` fixtures are executable AgentDojo external fixtures converted from upstream injection-task metadata. They use upstream task ids, source paths, line numbers, versions, and ground-truth tool function names while omitting raw AgentDojo prompt and injection text.
+
 ## Current Adapter Set
 
 - `no_guard`: represents systems with no tool mediation.

@@ -29,7 +29,7 @@ make provenance-gate
 Current expected result:
 
 ```text
-fixtures=21 local_synthetic=12 synthetic_compatibility=9 external_import=0 unknown=0
+fixtures=63 local_synthetic=12 synthetic_compatibility=9 external_import=42 unknown=0
 superiority_allowed=False
 ```
 
@@ -39,7 +39,7 @@ superiority_allowed=False
 
 Source: https://github.com/ethz-spylab/agentdojo
 
-Status: metadata importer implemented; executable fixture conversion pending.
+Status: executable fixture subset implemented for injection tasks with concrete side-effect function names.
 
 License: MIT.
 
@@ -51,7 +51,9 @@ Current importer:
 AGENTDOJO_PATH=/path/to/agentdojo make agentdojo-manifest
 ```
 
-The importer records upstream commit, suite names, task ids, decorator-declared versions, source version directories, source paths, line numbers, source-file hashes, and injection-vector counts. It intentionally does not copy raw benchmark prompt or injection text into this repository.
+The importer records upstream commit, suite names, task ids, decorator-declared versions, source version directories, source paths, line numbers, source-file hashes, injection-vector counts, and ground-truth tool function names. It intentionally does not copy raw benchmark prompt or injection text into this repository.
+
+The current executable conversion maps AgentDojo injection tasks with concrete side-effect functions into `ADJX-*` Prompt Firewall fixtures. It skips output-only tasks and tasks whose AgentDojo security check infers side effects without explicit ground-truth function calls.
 
 ### Tensor Trust
 
@@ -110,4 +112,4 @@ Blocked now:
 Prompt Firewall is proven better than published defenses or benchmark-leading systems.
 ```
 
-The blocked claim becomes reviewable only after imported external benchmark rows exist and the proof standard above is satisfied. Metadata-only imports do not count as runnable external fixtures.
+The blocked claim becomes reviewable only after at least two external benchmark families have executable rows and the proof standard above is satisfied. Metadata-only imports do not count as runnable external fixtures.

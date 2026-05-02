@@ -22,7 +22,10 @@ class BenchmarkFamily:
 
     @property
     def is_external_import(self) -> bool:
-        return self.source_kind == "external_import" and self.status == "implemented"
+        return self.source_kind == "external_import" and self.status in {
+            "implemented",
+            "executable_fixture_subset_implemented",
+        }
 
 
 @dataclass(frozen=True)

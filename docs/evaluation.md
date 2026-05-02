@@ -102,6 +102,7 @@ It covers:
 - tainted memory write quarantine
 - AgentDojo-style workspace, travel, banking, and tool-output attacks
 - Tensor-Trust-style prompt extraction and prompt hijacking attacks
+- executable AgentDojo external injection-task side effects sourced from upstream metadata
 
 ## Scoring
 
