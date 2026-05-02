@@ -88,7 +88,22 @@ These adapters intentionally separate model-layer defenses from execution-layer 
 
 The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data.
 
-GitHub Actions is not enabled yet because this repository owner's Actions jobs are currently blocked by account billing state. Use the local `make` gates above as the source of truth until CI is available.
+Use the local `make` gates above as the current source of truth until CI is configured.
+
+## Current Evidence
+
+The current local gates pass:
+
+- `make test`: pytest coverage for policy decisions, fixture selection, and model-evaluation adapters
+- `make eval`: deterministic comparison across 21 fixtures
+- `make model-eval`: deliberately vulnerable fake-model control
+- `make model-eval-codex-smoke`: four-fixture Codex CLI smoke through schema-constrained output
+
+These results show that the reference policy preserves taint and mediates proposed actions on the included fixtures. They do not prove broad robustness against every prompt-injection attack.
+
+## Not Yet Proven
+
+Prompt Firewall has not yet been proven against full external benchmark suites such as AgentDojo or Tensor Trust. The current `ADJ-*` and `TT-*` cases are synthetic compatibility fixtures inspired by those attack families. Claims of superiority over other research systems require imported benchmark runs, raw-model sweeps, and a stronger statistical report.
 
 ## Security Posture
 
@@ -102,12 +117,12 @@ Prompt Firewall assumes:
 
 ## Status
 
-This is an initial public spec. The next useful step is a small reference implementation of:
+This is an initial public spec and reference harness. The next useful steps are:
 
 - canonical task packet schema
 - intent-signing verifier
 - taint-preserving memory store
 - action mediation policy engine
-- red-team fixtures for stored injection
+- real external benchmark imports for stored injection and agentic tool-use attacks
 
 The first engineering pass now includes a Python reference harness under `src/prompt_firewall` and pytest coverage under `tests`.
