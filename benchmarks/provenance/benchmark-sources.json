@@ -1,0 +1,72 @@
+{
+  "version": "0.1.0",
+  "source_kinds": {
+    "local_synthetic": "Fixture content authored in this repository.",
+    "synthetic_compatibility": "Local fixture inspired by an external benchmark family, not copied from that benchmark.",
+    "external_import": "Fixture imported or generated from an external benchmark source with a reproducible source reference."
+  },
+  "benchmark_families": {
+    "prompt_firewall": {
+      "source_kind": "local_synthetic",
+      "status": "implemented",
+      "claim_weight": "mechanism_test",
+      "source_url": "https://github.com/its-DeFine/prompt-firewall",
+      "license": "MIT",
+      "notes": "Core mechanism fixtures for signed intent, persistent taint, and action mediation."
+    },
+    "agentdojo_style": {
+      "source_kind": "synthetic_compatibility",
+      "status": "implemented",
+      "claim_weight": "compatibility_scaffold",
+      "source_url": "https://github.com/ethz-spylab/agentdojo",
+      "license": "MIT",
+      "notes": "Synthetic fixtures inspired by AgentDojo domains; not imported AgentDojo benchmark data."
+    },
+    "tensor_trust_style": {
+      "source_kind": "synthetic_compatibility",
+      "status": "implemented",
+      "claim_weight": "compatibility_scaffold",
+      "source_url": "https://github.com/HumanCompatibleAI/tensor-trust",
+      "license": "BSD-2-Clause",
+      "notes": "Synthetic fixtures inspired by Tensor Trust prompt hijacking/extraction families; not imported Tensor Trust data."
+    },
+    "agentdojo_external": {
+      "source_kind": "external_import",
+      "status": "planned",
+      "claim_weight": "external_benchmark",
+      "source_url": "https://github.com/ethz-spylab/agentdojo",
+      "license": "MIT",
+      "notes": "Planned adapter for real AgentDojo suites and tasks."
+    },
+    "tensor_trust_external": {
+      "source_kind": "external_import",
+      "status": "planned",
+      "claim_weight": "external_benchmark",
+      "source_url": "https://github.com/HumanCompatibleAI/tensor-trust",
+      "license": "BSD-2-Clause",
+      "notes": "Planned adapter for real Tensor Trust data/tasks."
+    },
+    "agentdyn_external": {
+      "source_kind": "external_import",
+      "status": "planned",
+      "claim_weight": "external_benchmark",
+      "source_url": "https://github.com/SaFo-Lab/AgentDyn",
+      "license": "MIT",
+      "notes": "Planned review target for dynamic open-ended prompt-injection attacks with 60 tasks and 560 injection test cases."
+    }
+  },
+  "claim_rules": {
+    "superiority_claim": {
+      "minimum_external_fixtures": 30,
+      "minimum_external_families": 2,
+      "requires_raw_model_runs": true,
+      "requires_repeated_attempts": true,
+      "requires_utility_measure": true,
+      "requires_failure_report": true
+    },
+    "release_claim": {
+      "allowed": "Prompt Firewall is an early reference harness and policy design with local synthetic and compatibility fixtures.",
+      "forbidden": "Prompt Firewall is proven better than published defenses or benchmark-leading systems."
+    }
+  }
+}

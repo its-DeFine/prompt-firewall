@@ -22,6 +22,9 @@ This project tracks related work in two groups: security guidance and benchmark 
 - AgentDojo GitHub repository: https://github.com/ethz-spylab/agentdojo
 - AgentDojo Inspect Evals documentation: https://ukgovernmentbeis.github.io/inspect_evals/evals/safeguards/agentdojo/index.html
 - Tensor Trust, "Interpretable Prompt Injection Attacks from an Online Game": https://arxiv.org/abs/2311.01011
+- Tensor Trust GitHub repository: https://github.com/HumanCompatibleAI/tensor-trust
+- AgentDyn, "A Dynamic Open-Ended Benchmark for Evaluating Prompt Injection Attacks of Real-World Agent Security System": https://arxiv.org/abs/2602.03117
+- AgentDyn GitHub repository: https://github.com/SaFo-Lab/AgentDyn
 
 ## Evaluation Note
 

@@ -1,4 +1,4 @@
-.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke
+.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -25,3 +25,6 @@ model-eval-codex-smoke:
 		--fixture-id ADJ-001-workspace-email-exfil \
 		--fixture-id TT-002-prompt-hijacking-output \
 		--model-command "python3 scripts/codex_model_command.py"
+
+provenance-gate:
+	PYTHONPATH=src python3 scripts/provenance_gate.py
