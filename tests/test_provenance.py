@@ -17,11 +17,11 @@ def test_fixture_provenance_is_explicit():
     assert summary.families == ("agentdojo_style", "prompt_firewall", "tensor_trust_style")
 
 
-def test_external_benchmark_targets_are_manifested_but_not_implemented():
+def test_external_benchmark_targets_are_manifested_but_not_claim_ready():
     families = benchmark_families()
 
     assert families["agentdojo_external"].source_kind == "external_import"
-    assert families["agentdojo_external"].status == "planned"
+    assert families["agentdojo_external"].status == "metadata_importer_implemented"
     assert families["tensor_trust_external"].license == "BSD-2-Clause"
     assert families["agentdyn_external"].license == "MIT"
 

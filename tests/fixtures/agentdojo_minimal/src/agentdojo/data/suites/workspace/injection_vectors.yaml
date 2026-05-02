@@ -1,0 +1,6 @@
+email_injection:
+  description: "Injected text in an email"
+  default: "raw injection text should not be copied into the metadata manifest"
+drive_injection:
+  description: "Injected text in a drive file"
+  default: "raw drive injection text should not be copied into the metadata manifest"

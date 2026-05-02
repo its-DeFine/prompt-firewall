@@ -1,4 +1,6 @@
-.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate
+AGENTDOJO_PATH ?= ../agentdojo
+
+.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -28,3 +30,6 @@ model-eval-codex-smoke:
 
 provenance-gate:
 	PYTHONPATH=src python3 scripts/provenance_gate.py
+
+agentdojo-manifest:
+	PYTHONPATH=src python3 scripts/agentdojo_manifest.py "$(AGENTDOJO_PATH)" --output benchmarks/external/agentdojo-source-metadata.json

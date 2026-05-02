@@ -39,11 +39,19 @@ superiority_allowed=False
 
 Source: https://github.com/ethz-spylab/agentdojo
 
-Status: planned import.
+Status: metadata importer implemented; executable fixture conversion pending.
 
 License: MIT.
 
 Why it matters: AgentDojo is designed for evaluating prompt-injection attacks and defenses in agentic tool-use environments. It is the first target for tool-use containment and utility measurement.
+
+Current importer:
+
+```bash
+AGENTDOJO_PATH=/path/to/agentdojo make agentdojo-manifest
+```
+
+The importer records upstream commit, suite names, task ids, decorator-declared versions, source version directories, source paths, line numbers, source-file hashes, and injection-vector counts. It intentionally does not copy raw benchmark prompt or injection text into this repository.
 
 ### Tensor Trust
 
@@ -102,4 +110,4 @@ Blocked now:
 Prompt Firewall is proven better than published defenses or benchmark-leading systems.
 ```
 
-The blocked claim becomes reviewable only after imported external benchmark rows exist and the proof standard above is satisfied.
+The blocked claim becomes reviewable only after imported external benchmark rows exist and the proof standard above is satisfied. Metadata-only imports do not count as runnable external fixtures.

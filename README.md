@@ -84,6 +84,12 @@ Check benchmark provenance and release-claim gates:
 make provenance-gate
 ```
 
+Generate metadata from a local AgentDojo checkout:
+
+```bash
+AGENTDOJO_PATH=/path/to/agentdojo make agentdojo-manifest
+```
+
 The current adapter set includes:
 
 - `no_guard`
@@ -93,9 +99,9 @@ The current adapter set includes:
 
 These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
 
-The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data.
+The current fixture suite has 21 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, and 4 Tensor-Trust-style fixtures. The external-style fixtures are synthetic compatibility fixtures, not copied benchmark data. AgentDojo source metadata can now be generated from a real checkout, but those rows are not executable fixtures yet.
 
-Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because no real external benchmark rows are imported yet.
+Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because no executable external benchmark rows are imported yet.
 
 Use the local `make` gates above as the current source of truth until CI is configured.
 
@@ -132,6 +138,6 @@ This is an initial public spec and reference harness. The next useful steps are:
 - intent-signing verifier
 - taint-preserving memory store
 - action mediation policy engine
-- real external benchmark imports for stored injection and agentic tool-use attacks
+- executable external benchmark imports for stored injection and agentic tool-use attacks
 
 The first engineering pass now includes a Python reference harness under `src/prompt_firewall` and pytest coverage under `tests`.

@@ -3,7 +3,8 @@
   "source_kinds": {
     "local_synthetic": "Fixture content authored in this repository.",
     "synthetic_compatibility": "Local fixture inspired by an external benchmark family, not copied from that benchmark.",
-    "external_import": "Fixture imported or generated from an external benchmark source with a reproducible source reference."
+    "external_import": "Fixture imported or generated from an external benchmark source with a reproducible source reference.",
+    "external_import_metadata": "Source metadata extracted from an external benchmark without executable fixture conversion."
   },
   "benchmark_families": {
     "prompt_firewall": {
@@ -32,11 +33,11 @@
     },
     "agentdojo_external": {
       "source_kind": "external_import",
-      "status": "planned",
+      "status": "metadata_importer_implemented",
       "claim_weight": "external_benchmark",
       "source_url": "https://github.com/ethz-spylab/agentdojo",
       "license": "MIT",
-      "notes": "Planned adapter for real AgentDojo suites and tasks."
+      "notes": "Metadata importer implemented for real AgentDojo suites and tasks; executable fixture conversion is still pending."
     },
     "tensor_trust_external": {
       "source_kind": "external_import",
