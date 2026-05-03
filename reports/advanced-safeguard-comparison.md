@@ -18,6 +18,8 @@ The superiority gate requires:
 
 ### Open Hugging Face Classifier Adapter
 
+Adapter status: command adapter scaffolded plus batch Hugging Face evaluator.
+
 Implemented target ids:
 
 - `llama_prompt_guard_2_86m`

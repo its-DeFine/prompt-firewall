@@ -137,14 +137,14 @@ Run it against the deterministic fixture suite:
 make eval-llama-prompt-guard
 ```
 
-The same command wrapper can run other open Hugging Face text-classification prompt-injection detectors by changing `--model-id` and malicious label mapping:
+The Make targets use a batch evaluator that loads each Hugging Face classifier once, then scores the fixture suite:
 
 ```bash
 make eval-protectai-prompt-injection
 make eval-neuralchemy-prompt-injection
 ```
 
-Equivalent direct command:
+The older command-wrapper path remains available for adapter integration tests:
 
 ```bash
 PYTHONPATH=src python3 -m prompt_firewall.evaluate \

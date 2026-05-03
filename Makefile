@@ -14,19 +14,24 @@ eval-json:
 	PYTHONPATH=src python3 -m prompt_firewall.evaluate --json
 
 eval-llama-prompt-guard:
-	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
-		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py" \
-		--fail-on-adapter-failures
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id meta-llama/Llama-Prompt-Guard-2-86M \
+		--target-id llama_prompt_guard_2_86m \
+		--malicious-label MALICIOUS
 
 eval-protectai-prompt-injection:
-	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
-		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py --model-id protectai/deberta-v3-base-prompt-injection-v2 --malicious-label INJECTION" \
-		--fail-on-adapter-failures
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id protectai/deberta-v3-base-prompt-injection-v2 \
+		--target-id protectai_deberta_prompt_injection_v2 \
+		--malicious-label INJECTION
 
 eval-neuralchemy-prompt-injection:
-	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
-		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py --model-id neuralchemy/prompt-injection-deberta --malicious-label INJECTION --malicious-label MALICIOUS --malicious-label LABEL_1" \
-		--fail-on-adapter-failures
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id neuralchemy/prompt-injection-deberta \
+		--target-id neuralchemy_prompt_injection_deberta \
+		--malicious-label INJECTION \
+		--malicious-label MALICIOUS \
+		--malicious-label LABEL_1
 
 model-eval:
 	PYTHONPATH=src python3 -m prompt_firewall.model_eval --fake-model vulnerable
