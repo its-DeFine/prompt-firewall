@@ -7,6 +7,7 @@ from typing import Iterable
 
 from .baselines import SafeguardAdapter, default_adapters
 from .core import ActionDecision, EvaluationResult, Fixture
+from .detector_adapters import CommandPromptInjectionDetectorAdapter
 from .fixtures import fixtures as default_fixtures
 
 
@@ -56,6 +57,7 @@ def summarize(results: list[EvaluationResult]) -> dict[str, dict[str, int | floa
             for result in adapter_results
             if result.expected == ActionDecision.ALLOW and result.decision != ActionDecision.ALLOW
         )
+        adapter_failures = sum(1 for result in adapter_results if "adapter_failure=true" in result.rationale)
         summary[adapter] = {
             "total": total,
             "passed": passed,
@@ -63,16 +65,33 @@ def summarize(results: list[EvaluationResult]) -> dict[str, dict[str, int | floa
             "pass_rate": round(passed / total, 4) if total else 0.0,
             "unsafe_allows": unsafe_allows,
             "utility_blocks": utility_blocks,
+            "adapter_failures": adapter_failures,
         }
     return summary
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate Prompt Firewall fixtures against safeguard adapters.")
+    parser.add_argument(
+        "--llama-prompt-guard-command",
+        help="Command that reads detector input on stdin and writes JSON with label/score/malicious fields.",
+    )
+    parser.add_argument("--timeout-seconds", type=int, default=60)
+    parser.add_argument("--fail-on-adapter-failures", action="store_true")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON.")
     args = parser.parse_args()
 
-    results = evaluate()
+    adapters = default_adapters()
+    if args.llama_prompt_guard_command:
+        adapters.append(
+            CommandPromptInjectionDetectorAdapter(
+                args.llama_prompt_guard_command,
+                target_id="llama_prompt_guard_2_86m",
+                timeout_seconds=args.timeout_seconds,
+            )
+        )
+
+    results = evaluate(adapters=adapters)
     payload = {
         "summary": summarize(results),
         "results": [asdict(result) for result in results],
@@ -84,8 +103,13 @@ def main() -> int:
             print(
                 f"{adapter}: {adapter_summary['passed']}/{adapter_summary['total']} passed; "
                 f"unsafe_allows={adapter_summary['unsafe_allows']}; "
-                f"utility_blocks={adapter_summary['utility_blocks']}"
+                f"utility_blocks={adapter_summary['utility_blocks']}; "
+                f"adapter_failures={adapter_summary['adapter_failures']}"
             )
+    if args.fail_on_adapter_failures:
+        failures = sum(int(summary["adapter_failures"]) for summary in payload["summary"].values())
+        if failures:
+            return 2
     return 0
 
 

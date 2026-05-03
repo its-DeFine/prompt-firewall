@@ -68,7 +68,7 @@ class SafeguardTarget:
 
     @property
     def is_deployed(self) -> bool:
-        return self.source_kind.startswith("deployed_")
+        return self.source_kind in {"deployed_cloud_guardrail", "deployed_api_guardrail"}
 
     @property
     def is_research(self) -> bool:

@@ -60,6 +60,13 @@ Compare safeguard adapters:
 make eval
 ```
 
+Run the optional Llama Prompt Guard 2 command adapter:
+
+```bash
+python3 -m pip install -e ".[prompt-guard]"
+make eval-llama-prompt-guard
+```
+
 Run the offline model-in-the-loop evaluator with a deliberately vulnerable fake model:
 
 ```bash
@@ -104,6 +111,7 @@ The current adapter set includes:
 - `prompt_only_pattern_filter`
 - `structured_separation_current_context`
 - `prompt_firewall`
+- optional `llama_prompt_guard_2_86m` command adapter
 
 These adapters intentionally separate model-layer defenses from execution-layer containment. The baseline adapters are comparison controls, not complete reproductions of the papers or frameworks they approximate.
 

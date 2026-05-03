@@ -121,6 +121,13 @@ For a claim against advanced or deployed safeguards, the named target set must i
 - Spotlighting source marking (`spotlighting_source_marking`)
 - recent tool-interface firewall benchmark-leader defenses (`tool_interface_firewall_benchmark_leader`)
 
+The Llama Prompt Guard 2 target has a command-adapter scaffold:
+
+```bash
+python3 -m pip install -e ".[prompt-guard]"
+make eval-llama-prompt-guard
+```
+
 Each comparison should report:
 
 - attack success rate

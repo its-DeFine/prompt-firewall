@@ -121,6 +121,32 @@ PYTHONPATH=src python3 scripts/raw_tensortrust_eval.py /path/to/tensor-trust-dat
 
 The output records prompt/output hashes, lengths, and pass/fail flags. It avoids storing raw benchmark prompts, model outputs, or leaked access codes.
 
+## Llama Prompt Guard 2 Adapter
+
+The first named advanced-safeguard scaffold is Meta Llama Prompt Guard 2 86M. It is treated as a classifier gate: if the detector reports `MALICIOUS`, the adapter blocks; otherwise it allows. That comparison intentionally exposes classifier-only behavior separately from execution-layer containment.
+
+Install optional dependencies:
+
+```bash
+python3 -m pip install -e ".[prompt-guard]"
+```
+
+Run it against the deterministic fixture suite:
+
+```bash
+make eval-llama-prompt-guard
+```
+
+Equivalent direct command:
+
+```bash
+PYTHONPATH=src python3 -m prompt_firewall.evaluate \
+  --llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py"
+```
+
+The command wrapper reads detector input from stdin and emits `label`, `score`, `malicious`, model id, threshold, and input length. It does not emit raw fixture text.
+If the detector command is unavailable, the adapter fails closed and the evaluator reports nonzero `adapter_failures`; the Make target exits nonzero in that case because unavailable runs are not valid comparison evidence.
+
 ## Current Codex Smoke
 
 On 2026-05-01, the Codex CLI adapter was run against four representative fixtures:

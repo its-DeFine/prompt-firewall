@@ -2,7 +2,7 @@ AGENTDOJO_PATH ?= ../agentdojo
 TENSORTRUST_CODE_PATH ?= ../tensor-trust
 TENSORTRUST_DATA_PATH ?= ../tensor-trust-data
 
-.PHONY: test eval eval-json model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
+.PHONY: test eval eval-json eval-llama-prompt-guard model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -12,6 +12,11 @@ eval:
 
 eval-json:
 	PYTHONPATH=src python3 -m prompt_firewall.evaluate --json
+
+eval-llama-prompt-guard:
+	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
+		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py" \
+		--fail-on-adapter-failures
 
 model-eval:
 	PYTHONPATH=src python3 -m prompt_firewall.model_eval --fake-model vulnerable

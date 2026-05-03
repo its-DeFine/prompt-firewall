@@ -82,11 +82,11 @@
     {
       "id": "llama_prompt_guard_2_86m",
       "name": "Meta Llama Prompt Guard 2 86M",
-      "source_kind": "deployed_open_model_classifier",
+      "source_kind": "open_model_classifier",
       "source_url": "https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M",
-      "status": "target_planned",
+      "status": "adapter_scaffolded",
       "comparison_role": "open_classifier",
-      "adapter_status": "planned",
+      "adapter_status": "command_adapter_scaffolded",
       "evaluation_requirements": [
         "model_revision",
         "classifier_threshold",

@@ -89,5 +89,5 @@ def test_superiority_claim_requires_named_deployed_and_research_comparisons():
 
     assert decision.allowed
     assert decision.compared_safeguard_count == 7
-    assert decision.deployed_safeguard_count == 5
+    assert decision.deployed_safeguard_count == 4
     assert decision.research_safeguard_count == 2
