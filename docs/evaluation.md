@@ -144,6 +144,7 @@ The v0 harness is not enough to claim broad security. A serious evaluation needs
 - independent adjudication for ambiguous expected decisions
 - explicit utility tasks, not only attacks
 - attack families from published benchmarks such as AgentDojo and Tensor Trust
+- named comparisons against deployed and research safeguards, not only local baseline adapters
 - repeated attempts per attack to measure attack-budget effects
 - clear distinction between model robustness and execution-layer containment
 

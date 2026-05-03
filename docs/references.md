@@ -9,12 +9,22 @@ This project tracks related work in two groups: security guidance and benchmark 
 - OWASP LLM Prompt Injection Prevention Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html
 - UK NCSC, "Prompt injection is not SQL injection": https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection
 
+## Deployed Safeguard Targets
+
+- Azure Prompt Shields: https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields
+- Google Cloud Model Armor: https://docs.cloud.google.com/model-armor/overview
+- Amazon Bedrock Guardrails prompt attack filter: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html
+- Lakera Guard Prompt Defense: https://docs.lakera.ai/docs/defenses
+- Meta Llama Prompt Guard 2 86M: https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M
+
 ## Defense Research
 
 - StruQ, "Defending Against Prompt Injection with Structured Queries": https://arxiv.org/abs/2402.06363
 - Spotlighting, "Defending Against Indirect Prompt Injection Attacks With Spotlighting": https://arxiv.org/abs/2403.14720
 - OpenAI, "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions": https://openai.com/index/the-instruction-hierarchy/
 - CaMeL, "Defeating Prompt Injections by Design": https://arxiv.org/abs/2503.18813
+- CaMeL GitHub repository: https://github.com/google-research/camel-prompt-injection
+- "Indirect Prompt Injections: Are Firewalls All You Need?": https://arxiv.org/abs/2510.05244
 
 ## Benchmarks
 

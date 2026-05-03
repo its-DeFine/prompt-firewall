@@ -13,11 +13,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Check benchmark provenance and release claim gates.")
     parser.add_argument("--json", action="store_true", help="Emit JSON.")
     parser.add_argument("--check-superiority", action="store_true", help="Fail if superiority claim is not allowed.")
+    parser.add_argument(
+        "--compared-safeguard",
+        action="append",
+        default=[],
+        help="Safeguard target id with completed comparison evidence. May be repeated.",
+    )
     args = parser.parse_args()
 
     current_fixtures = fixtures()
     summary = summarize_fixture_provenance(current_fixtures)
-    gate = superiority_claim_gate(current_fixtures)
+    gate = superiority_claim_gate(current_fixtures, compared_safeguards=tuple(args.compared_safeguard))
     payload = {
         "provenance": asdict(summary),
         "superiority_claim_gate": asdict(gate),

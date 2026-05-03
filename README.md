@@ -110,6 +110,7 @@ These adapters intentionally separate model-layer defenses from execution-layer 
 The current fixture suite has 103 cases: 12 Prompt Firewall core fixtures, 5 AgentDojo-style fixtures, 4 Tensor-Trust-style fixtures, 42 executable AgentDojo external fixtures converted from upstream injection-task side-effect metadata, and 40 Tensor Trust external content fixtures generated from benchmark row metadata. The `ADJ-*` and `TT-*` fixtures are synthetic compatibility fixtures; the `ADJX-*` and `TTX-*` fixtures are sourced from external benchmark metadata without vendoring raw benchmark prompt text.
 
 Benchmark provenance is tracked in [benchmarks/provenance/benchmark-sources.json](benchmarks/provenance/benchmark-sources.json). The claim gate currently blocks superiority claims because required raw-model, repeated-attempt, utility, and failure-report evidence is still missing.
+Advanced safeguard comparison targets are tracked in [benchmarks/provenance/safeguard-targets.json](benchmarks/provenance/safeguard-targets.json). A superiority claim now also requires named deployed and research safeguard comparisons.
 
 Use the local `make` gates above as the current source of truth until CI is configured.
 
@@ -126,7 +127,7 @@ These results show that the reference policy preserves taint and mediates propos
 
 ## Not Yet Proven
 
-Prompt Firewall has not yet been proven against full external benchmark suites such as AgentDojo or Tensor Trust. The repo now includes bounded `ADJX-*` and `TTX-*` external fixture subsets, but claims of superiority over other research systems require raw-model sweeps over upstream benchmark text, repeated attack attempts, utility measurement, and a failure report.
+Prompt Firewall has not yet been proven against full external benchmark suites such as AgentDojo or Tensor Trust. The repo now includes bounded `ADJX-*` and `TTX-*` external fixture subsets, but claims of superiority over deployed or research systems require raw-model sweeps over upstream benchmark text, named safeguard comparisons, repeated attack attempts, utility measurement, and a failure report.
 
 ## Security Posture
 

@@ -12,6 +12,9 @@ A superiority claim requires:
 
 - at least 30 externally sourced fixtures
 - at least two external benchmark families
+- at least six named compared safeguards
+- at least three deployed guardrail comparisons
+- at least two research-defense comparisons
 - raw model runs, not only Codex CLI product-stack runs
 - repeated attack attempts per case
 - utility measurement on benign tasks
@@ -19,6 +22,7 @@ A superiority claim requires:
 - identical fixture sets for each compared safeguard
 
 This standard is encoded in `benchmarks/provenance/benchmark-sources.json` and enforced by `scripts/provenance_gate.py`.
+Named comparison targets are tracked in `benchmarks/provenance/safeguard-targets.json`.
 
 Run:
 
@@ -104,6 +108,18 @@ Prompt Firewall must be compared against:
 - instruction-hierarchy model behavior
 - CaMeL-style capability/control-flow mediation
 - Prompt Firewall
+
+For a claim against advanced or deployed safeguards, the named target set must include at least:
+
+- Azure Prompt Shields (`azure_prompt_shields`)
+- Google Cloud Model Armor (`google_model_armor`)
+- Amazon Bedrock Guardrails Prompt Attack Filter (`aws_bedrock_guardrails_prompt_attack`)
+- Lakera Guard Prompt Defense (`lakera_guard_prompt_defense`)
+- Meta Llama Prompt Guard 2 86M (`llama_prompt_guard_2_86m`)
+- CaMeL capability/control-flow mediation (`camel_capability_mediation`)
+- StruQ structured queries (`struq_structured_queries`)
+- Spotlighting source marking (`spotlighting_source_marking`)
+- recent tool-interface firewall benchmark-leader defenses (`tool_interface_firewall_benchmark_leader`)
 
 Each comparison should report:
 

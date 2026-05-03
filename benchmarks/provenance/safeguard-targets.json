@@ -1,0 +1,169 @@
+{
+  "version": "0.1.0",
+  "claim_scope": "advanced_or_deployed_prompt_injection_safeguards",
+  "minimum_comparison_requirements": {
+    "minimum_compared_safeguards": 6,
+    "minimum_deployed_safeguards": 3,
+    "minimum_research_safeguards": 2
+  },
+  "targets": [
+    {
+      "id": "azure_prompt_shields",
+      "name": "Azure Prompt Shields",
+      "source_kind": "deployed_cloud_guardrail",
+      "source_url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields",
+      "status": "target_planned",
+      "comparison_role": "prompt_attack_filter",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "service_version_or_api_date",
+        "direct_attack_decisions",
+        "indirect_document_attack_decisions",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Azure Prompt Shields targets user prompt attacks and indirect document attacks, with spotlighting support for documents."
+    },
+    {
+      "id": "google_model_armor",
+      "name": "Google Cloud Model Armor",
+      "source_kind": "deployed_cloud_guardrail",
+      "source_url": "https://docs.cloud.google.com/model-armor/overview",
+      "status": "target_planned",
+      "comparison_role": "prompt_and_response_sanitizer",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "template_configuration",
+        "prompt_injection_detection_decisions",
+        "jailbreak_detection_decisions",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Model Armor can scan prompts and responses for prompt injection and jailbreak detection when enabled."
+    },
+    {
+      "id": "aws_bedrock_guardrails_prompt_attack",
+      "name": "Amazon Bedrock Guardrails Prompt Attack Filter",
+      "source_kind": "deployed_cloud_guardrail",
+      "source_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html",
+      "status": "target_planned",
+      "comparison_role": "prompt_attack_filter",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "guardrail_identifier",
+        "filter_tier",
+        "input_strength",
+        "tagging_policy",
+        "block_or_detect_action",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "The Bedrock prompt attack filter covers jailbreaks, prompt injection, and prompt leakage; user-input tags are required for supported filtering."
+    },
+    {
+      "id": "lakera_guard_prompt_defense",
+      "name": "Lakera Guard Prompt Defense",
+      "source_kind": "deployed_api_guardrail",
+      "source_url": "https://docs.lakera.ai/docs/defenses",
+      "status": "target_planned",
+      "comparison_role": "prompt_attack_detector",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "policy_id",
+        "guard_endpoint_version",
+        "message_format",
+        "flagging_threshold",
+        "breakdown_enabled",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Lakera Prompt Defense detects direct and indirect prompt attacks, jailbreaks, and manipulation attempts in submitted content."
+    },
+    {
+      "id": "llama_prompt_guard_2_86m",
+      "name": "Meta Llama Prompt Guard 2 86M",
+      "source_kind": "deployed_open_model_classifier",
+      "source_url": "https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M",
+      "status": "target_planned",
+      "comparison_role": "open_classifier",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open classifier target for prompt-injection and jailbreak detection comparisons."
+    },
+    {
+      "id": "camel_capability_mediation",
+      "name": "CaMeL Capability and Control-Flow Mediation",
+      "source_kind": "research_defense",
+      "source_url": "https://github.com/google-research/camel-prompt-injection",
+      "status": "target_planned",
+      "comparison_role": "control_and_data_flow_defense",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "paper_or_repo_commit",
+        "policy_configuration",
+        "tool_authority_mapping",
+        "utility_results",
+        "unsafe_action_results"
+      ],
+      "notes": "CaMeL extracts control and data flows from trusted queries so untrusted retrieved data cannot impact program flow."
+    },
+    {
+      "id": "struq_structured_queries",
+      "name": "StruQ Structured Queries",
+      "source_kind": "research_defense",
+      "source_url": "https://arxiv.org/abs/2402.06363",
+      "status": "target_planned",
+      "comparison_role": "structured_query_model_defense",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "model_revision_or_reimplementation",
+        "prompt_data_channel_mapping",
+        "attack_success_rate",
+        "utility_results",
+        "false_block_rate"
+      ],
+      "notes": "Structured-query defense separating prompt and data channels with a model trained to follow only prompt-channel instructions."
+    },
+    {
+      "id": "spotlighting_source_marking",
+      "name": "Spotlighting Source Marking",
+      "source_kind": "research_defense",
+      "source_url": "https://www.microsoft.com/en-us/research/publication/defending-against-indirect-prompt-injection-attacks-with-spotlighting/",
+      "status": "target_planned",
+      "comparison_role": "source_marking_defense",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "spotlighting_mode",
+        "model",
+        "attack_success_rate",
+        "utility_results",
+        "false_block_rate"
+      ],
+      "notes": "Spotlighting uses transformations of untrusted input to provide a provenance signal to the model."
+    },
+    {
+      "id": "tool_interface_firewall_benchmark_leader",
+      "name": "Tool-Interface Firewall Benchmark-Leader Defense",
+      "source_kind": "research_defense",
+      "source_url": "https://arxiv.org/abs/2510.05244",
+      "status": "target_planned",
+      "comparison_role": "tool_interface_firewall",
+      "adapter_status": "planned",
+      "evaluation_requirements": [
+        "paper_or_repo_commit",
+        "benchmark_configuration",
+        "attack_success_rate",
+        "task_success_rate",
+        "failure_report"
+      ],
+      "notes": "Target for comparison against recent tool-interface firewall claims across public agentic prompt-injection benchmarks."
+    }
+  ]
+}

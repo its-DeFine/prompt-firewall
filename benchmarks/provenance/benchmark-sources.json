@@ -60,6 +60,9 @@
     "superiority_claim": {
       "minimum_external_fixtures": 30,
       "minimum_external_families": 2,
+      "minimum_compared_safeguards": 6,
+      "minimum_deployed_safeguards": 3,
+      "minimum_research_safeguards": 2,
       "requires_raw_model_runs": true,
       "requires_repeated_attempts": true,
       "requires_utility_measure": true,
