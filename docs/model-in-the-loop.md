@@ -137,6 +137,13 @@ Run it against the deterministic fixture suite:
 make eval-llama-prompt-guard
 ```
 
+The same command wrapper can run other open Hugging Face text-classification prompt-injection detectors by changing `--model-id` and malicious label mapping:
+
+```bash
+make eval-protectai-prompt-injection
+make eval-neuralchemy-prompt-injection
+```
+
 Equivalent direct command:
 
 ```bash

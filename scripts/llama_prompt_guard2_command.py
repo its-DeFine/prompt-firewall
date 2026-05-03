@@ -11,6 +11,12 @@ def main() -> int:
     parser.add_argument("--model-id", default="meta-llama/Llama-Prompt-Guard-2-86M")
     parser.add_argument("--threshold", type=float, default=0.5)
     parser.add_argument("--max-length", type=int, default=512)
+    parser.add_argument(
+        "--malicious-label",
+        action="append",
+        default=["MALICIOUS"],
+        help="Classifier label treated as malicious. May be repeated.",
+    )
     parser.add_argument("--device", default=None, help="Transformers pipeline device, such as cpu, mps, cuda:0, or -1.")
     args = parser.parse_args()
 
@@ -48,11 +54,13 @@ def main() -> int:
         (float(item["score"]) for item in scores if str(item["label"]).casefold() == "malicious"),
         default=score if label.casefold() == "malicious" else 0.0,
     )
+    malicious_labels = {label.casefold() for label in args.malicious_label}
     payload = {
         "label": label,
         "score": score,
-        "malicious": label.casefold() == "malicious" and malicious_score >= args.threshold,
+        "malicious": label.casefold() in malicious_labels and score >= args.threshold,
         "malicious_score": malicious_score,
+        "malicious_labels": sorted(args.malicious_label),
         "threshold": args.threshold,
         "model_id": args.model_id,
         "input_chars": len(text),

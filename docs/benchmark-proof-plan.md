@@ -126,6 +126,8 @@ The Llama Prompt Guard 2 target has a command-adapter scaffold:
 ```bash
 python3 -m pip install -e ".[prompt-guard]"
 make eval-llama-prompt-guard
+make eval-protectai-prompt-injection
+make eval-neuralchemy-prompt-injection
 ```
 
 Each comparison should report:

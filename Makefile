@@ -2,7 +2,7 @@ AGENTDOJO_PATH ?= ../agentdojo
 TENSORTRUST_CODE_PATH ?= ../tensor-trust
 TENSORTRUST_DATA_PATH ?= ../tensor-trust-data
 
-.PHONY: test eval eval-json eval-llama-prompt-guard model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
+.PHONY: test eval eval-json eval-llama-prompt-guard eval-protectai-prompt-injection eval-neuralchemy-prompt-injection model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -16,6 +16,16 @@ eval-json:
 eval-llama-prompt-guard:
 	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
 		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py" \
+		--fail-on-adapter-failures
+
+eval-protectai-prompt-injection:
+	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
+		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py --model-id protectai/deberta-v3-base-prompt-injection-v2 --malicious-label INJECTION" \
+		--fail-on-adapter-failures
+
+eval-neuralchemy-prompt-injection:
+	PYTHONPATH=src python3 -m prompt_firewall.evaluate \
+		--llama-prompt-guard-command "python3 scripts/llama_prompt_guard2_command.py --model-id neuralchemy/prompt-injection-deberta --malicious-label INJECTION --malicious-label MALICIOUS --malicious-label LABEL_1" \
 		--fail-on-adapter-failures
 
 model-eval:

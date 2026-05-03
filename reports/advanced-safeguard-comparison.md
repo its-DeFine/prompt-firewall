@@ -16,17 +16,21 @@ The superiority gate requires:
 
 ## Current Named Adapter
 
-### Meta Llama Prompt Guard 2 86M
+### Open Hugging Face Classifier Adapter
 
-Target id: `llama_prompt_guard_2_86m`
+Implemented target ids:
 
-Adapter status: command adapter scaffolded.
+- `llama_prompt_guard_2_86m`
+- `protectai_deberta_prompt_injection_v2`
+- `neuralchemy_prompt_injection_deberta`
 
 Run:
 
 ```bash
 python3 -m pip install -e ".[prompt-guard]"
 make eval-llama-prompt-guard
+make eval-protectai-prompt-injection
+make eval-neuralchemy-prompt-injection
 ```
 
 Current local environment result before installing optional dependencies:
