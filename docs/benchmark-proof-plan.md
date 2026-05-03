@@ -75,6 +75,14 @@ make tensortrust-manifest
 
 The importer records source commits, dataset file hashes, row counts, selected sample ids, row hashes, field hashes, and field lengths. It intentionally does not copy raw attacks, defenses, or access codes into this repository.
 
+Raw Tensor Trust model episodes are scaffolded separately:
+
+```bash
+PYTHONPATH=src python3 scripts/raw_tensortrust_eval.py /path/to/tensor-trust-data --dry-run
+```
+
+Dry runs emit prompt hashes and lengths. Actual runs require `--model-command` and store output hashes and pass/fail flags, not raw model outputs.
+
 ### AgentDyn / Dynamic Environment Attacks
 
 Source: https://github.com/SaFo-Lab/AgentDyn

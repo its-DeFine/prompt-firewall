@@ -103,6 +103,24 @@ PYTHONPATH=src python3 -m prompt_firewall.model_eval \
 
 Run output can be written with `--output-file <path>`.
 
+## Raw Tensor Trust Adapter
+
+The raw Tensor Trust scaffold feeds upstream benchmark text to a command model and scores attack success plus benign hijacking utility:
+
+```bash
+PYTHONPATH=src python3 scripts/raw_tensortrust_eval.py /path/to/tensor-trust-data \
+  --model-command "./my-raw-model-command" \
+  --attempts 3
+```
+
+Use `--dry-run` to inspect episode metadata without exposing raw prompts in output:
+
+```bash
+PYTHONPATH=src python3 scripts/raw_tensortrust_eval.py /path/to/tensor-trust-data --dry-run
+```
+
+The output records prompt/output hashes, lengths, and pass/fail flags. It avoids storing raw benchmark prompts, model outputs, or leaked access codes.
+
 ## Current Codex Smoke
 
 On 2026-05-01, the Codex CLI adapter was run against four representative fixtures:
