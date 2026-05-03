@@ -84,7 +84,7 @@
       "name": "Meta Llama Prompt Guard 2 86M",
       "source_kind": "open_model_classifier",
       "source_url": "https://huggingface.co/meta-llama/Llama-Prompt-Guard-2-86M",
-      "status": "adapter_scaffolded",
+      "status": "blocked_gated_access",
       "comparison_role": "open_classifier",
       "adapter_status": "command_adapter_scaffolded",
       "evaluation_requirements": [
@@ -104,7 +104,25 @@
       "source_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
       "status": "tested_in_private_vm",
       "comparison_role": "open_classifier",
-      "adapter_status": "command_adapter_scaffolded",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
+    },
+    {
+      "id": "protectai_deberta_prompt_injection_v1",
+      "name": "ProtectAI DeBERTa v3 Prompt Injection v1",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection",
+      "status": "tested_in_private_vm",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
       "evaluation_requirements": [
         "model_revision",
         "classifier_threshold",
@@ -134,10 +152,100 @@
       "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
     },
     {
+      "id": "gvd22_autotrain_promptinjection_detection",
+      "name": "GVD22 AutoTrain Prompt Injection Detection",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/gvd22/autotrain-promptinjection-detection-98935147272",
+      "status": "tested_in_private_vm",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
+    },
+    {
+      "id": "chitsii_mdeberta_v2_prompt_injections",
+      "name": "Chitsii mDeBERTa v2 Prompt Injections",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/chitsii/mdeberta-v2-base-prompt-injections",
+      "status": "tested_in_private_vm",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
+    },
+    {
+      "id": "jondot_distilbert_prompt_injection",
+      "name": "Jondot DistilBERT Prompt Injection",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/jondot/distilbert-prompt-injection",
+      "status": "blocked_missing_model_weights",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face target was metadata-visible, but Transformers could not find a loadable model weight file."
+    },
+    {
+      "id": "patronus_wolf_defender_prompt_injection",
+      "name": "Patronus Wolf Defender Prompt Injection",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/patronus-studio/wolf-defender-prompt-injection",
+      "status": "blocked_tokenizer_class_error",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face target was metadata-visible, but the pinned Transformers stack could not load its tokenizer class."
+    },
+    {
       "id": "devndeploy_bert_prompt_injection_detector",
       "name": "DevNDeploy BERT Prompt Injection Detector",
       "source_kind": "open_model_classifier",
       "source_url": "https://huggingface.co/devndeploy/bert-prompt-injection-detector",
+      "status": "tested_in_private_vm",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
+    },
+    {
+      "id": "fmops_distilbert_prompt_injection",
+      "name": "FMOPS DistilBERT Prompt Injection",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/fmops/distilbert-prompt-injection",
       "status": "tested_in_private_vm",
       "comparison_role": "open_classifier",
       "adapter_status": "batch_hf_evaluator",

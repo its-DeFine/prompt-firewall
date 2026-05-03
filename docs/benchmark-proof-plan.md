@@ -127,8 +127,13 @@ Open Hugging Face classifier targets have command-adapter and batch-evaluator sc
 python3 -m pip install -e ".[prompt-guard]"
 make eval-llama-prompt-guard
 make eval-protectai-prompt-injection
+make eval-protectai-prompt-injection-v1
 make eval-devndeploy-prompt-injection
+make eval-fmops-prompt-injection
+make eval-gvd22-prompt-injection
+make eval-chitsii-prompt-injection
 make eval-neuralchemy-prompt-injection
+make provenance-gate-open-classifiers
 ```
 
 Each comparison should report:

@@ -2,7 +2,7 @@ AGENTDOJO_PATH ?= ../agentdojo
 TENSORTRUST_CODE_PATH ?= ../tensor-trust
 TENSORTRUST_DATA_PATH ?= ../tensor-trust-data
 
-.PHONY: test eval eval-json eval-llama-prompt-guard eval-protectai-prompt-injection eval-devndeploy-prompt-injection eval-neuralchemy-prompt-injection model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
+.PHONY: test eval eval-json eval-llama-prompt-guard eval-protectai-prompt-injection eval-protectai-prompt-injection-v1 eval-devndeploy-prompt-injection eval-fmops-prompt-injection eval-gvd22-prompt-injection eval-chitsii-prompt-injection eval-neuralchemy-prompt-injection provenance-gate-open-classifiers model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -25,11 +25,38 @@ eval-protectai-prompt-injection:
 		--target-id protectai_deberta_prompt_injection_v2 \
 		--malicious-label INJECTION
 
+eval-protectai-prompt-injection-v1:
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id protectai/deberta-v3-base-prompt-injection \
+		--target-id protectai_deberta_prompt_injection_v1 \
+		--malicious-label INJECTION
+
 eval-devndeploy-prompt-injection:
 	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
 		--model-id devndeploy/bert-prompt-injection-detector \
 		--target-id devndeploy_bert_prompt_injection_detector \
 		--malicious-label INJECTION
+
+eval-fmops-prompt-injection:
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id fmops/distilbert-prompt-injection \
+		--target-id fmops_distilbert_prompt_injection \
+		--malicious-label LABEL_1 \
+		--malicious-label INJECTION
+
+eval-gvd22-prompt-injection:
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id gvd22/autotrain-promptinjection-detection-98935147272 \
+		--target-id gvd22_autotrain_promptinjection_detection \
+		--malicious-label 1 \
+		--malicious-label LABEL_1
+
+eval-chitsii-prompt-injection:
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id chitsii/mdeberta-v2-base-prompt-injections \
+		--target-id chitsii_mdeberta_v2_prompt_injections \
+		--malicious-label INJECTION \
+		--malicious-label LABEL_1
 
 eval-neuralchemy-prompt-injection:
 	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
@@ -58,6 +85,15 @@ model-eval-codex-smoke:
 
 provenance-gate:
 	PYTHONPATH=src python3 scripts/provenance_gate.py
+
+provenance-gate-open-classifiers:
+	PYTHONPATH=src python3 scripts/provenance_gate.py \
+		--compared-safeguard protectai_deberta_prompt_injection_v2 \
+		--compared-safeguard protectai_deberta_prompt_injection_v1 \
+		--compared-safeguard devndeploy_bert_prompt_injection_detector \
+		--compared-safeguard fmops_distilbert_prompt_injection \
+		--compared-safeguard gvd22_autotrain_promptinjection_detection \
+		--compared-safeguard chitsii_mdeberta_v2_prompt_injections
 
 agentdojo-manifest:
 	PYTHONPATH=src python3 scripts/agentdojo_manifest.py "$(AGENTDOJO_PATH)" --output benchmarks/external/agentdojo-source-metadata.json
