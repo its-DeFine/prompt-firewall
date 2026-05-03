@@ -2,7 +2,7 @@ AGENTDOJO_PATH ?= ../agentdojo
 TENSORTRUST_CODE_PATH ?= ../tensor-trust
 TENSORTRUST_DATA_PATH ?= ../tensor-trust-data
 
-.PHONY: test eval eval-json eval-llama-prompt-guard eval-protectai-prompt-injection eval-neuralchemy-prompt-injection model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
+.PHONY: test eval eval-json eval-llama-prompt-guard eval-protectai-prompt-injection eval-devndeploy-prompt-injection eval-neuralchemy-prompt-injection model-eval model-eval-json model-eval-cautious model-eval-codex-smoke provenance-gate agentdojo-manifest tensortrust-manifest raw-tensortrust-dry-run
 
 test:
 	PYTHONPATH=src python3 -m pytest
@@ -23,6 +23,12 @@ eval-protectai-prompt-injection:
 	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
 		--model-id protectai/deberta-v3-base-prompt-injection-v2 \
 		--target-id protectai_deberta_prompt_injection_v2 \
+		--malicious-label INJECTION
+
+eval-devndeploy-prompt-injection:
+	PYTHONPATH=src python3 scripts/hf_detector_eval.py \
+		--model-id devndeploy/bert-prompt-injection-detector \
+		--target-id devndeploy_bert_prompt_injection_detector \
 		--malicious-label INJECTION
 
 eval-neuralchemy-prompt-injection:

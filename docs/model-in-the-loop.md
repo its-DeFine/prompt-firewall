@@ -141,6 +141,7 @@ The Make targets use a batch evaluator that loads each Hugging Face classifier o
 
 ```bash
 make eval-protectai-prompt-injection
+make eval-devndeploy-prompt-injection
 make eval-neuralchemy-prompt-injection
 ```
 

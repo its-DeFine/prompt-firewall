@@ -121,12 +121,13 @@ For a claim against advanced or deployed safeguards, the named target set must i
 - Spotlighting source marking (`spotlighting_source_marking`)
 - recent tool-interface firewall benchmark-leader defenses (`tool_interface_firewall_benchmark_leader`)
 
-The Llama Prompt Guard 2 target has a command-adapter scaffold:
+Open Hugging Face classifier targets have command-adapter and batch-evaluator scaffolds:
 
 ```bash
 python3 -m pip install -e ".[prompt-guard]"
 make eval-llama-prompt-guard
 make eval-protectai-prompt-injection
+make eval-devndeploy-prompt-injection
 make eval-neuralchemy-prompt-injection
 ```
 

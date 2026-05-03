@@ -102,7 +102,7 @@
       "name": "ProtectAI DeBERTa v3 Prompt Injection v2",
       "source_kind": "open_model_classifier",
       "source_url": "https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2",
-      "status": "adapter_scaffolded",
+      "status": "tested_in_private_vm",
       "comparison_role": "open_classifier",
       "adapter_status": "command_adapter_scaffolded",
       "evaluation_requirements": [
@@ -120,9 +120,27 @@
       "name": "Neuralchemy Prompt Injection DeBERTa",
       "source_kind": "open_model_classifier",
       "source_url": "https://huggingface.co/neuralchemy/prompt-injection-deberta",
-      "status": "adapter_scaffolded",
+      "status": "blocked_tokenizer_error",
       "comparison_role": "open_classifier",
       "adapter_status": "command_adapter_scaffolded",
+      "evaluation_requirements": [
+        "model_revision",
+        "classifier_threshold",
+        "label_mapping",
+        "raw_scores",
+        "false_block_rate",
+        "latency"
+      ],
+      "notes": "Open Hugging Face text-classification target for prompt-injection detection comparisons."
+    },
+    {
+      "id": "devndeploy_bert_prompt_injection_detector",
+      "name": "DevNDeploy BERT Prompt Injection Detector",
+      "source_kind": "open_model_classifier",
+      "source_url": "https://huggingface.co/devndeploy/bert-prompt-injection-detector",
+      "status": "tested_in_private_vm",
+      "comparison_role": "open_classifier",
+      "adapter_status": "batch_hf_evaluator",
       "evaluation_requirements": [
         "model_revision",
         "classifier_threshold",
